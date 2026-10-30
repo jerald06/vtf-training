@@ -6,7 +6,7 @@
   </p>
 
   <div v-show="displayForm">
-    <form @submit.prevent="createTodo">
+    <form @submit.prevent="createTodo" @keydown.ctrl.enter.prevent="createTodo">
       <label for="todo-description">Description</label>
       <input v-model="data.todoDescription" type="text" id="todo-description">
 
