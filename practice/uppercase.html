@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <div id="app">
+    <input v-model="name" placeholder="Type something">
+    <p v-if="name">
+      <strong>{{ upper }}</strong>
+    </p>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp, ref, computed } = Vue
+
+    createApp({
+      setup() {
+        const name = ref('')
+        const upper = computed(() => name.value.toUpperCase())
+
+        return { name, upper }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>

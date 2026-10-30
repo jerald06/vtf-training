@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <div id="app">
+    <h2>{{ message }}</h2>
+    <button @click="count++">Clicked {{ count }} times</button>
+
+    <hr>
+    <input v-model="name" placeholder="Type your name">
+    <p>You typed: {{ name }}</p>
+    <p v-if="name">Hello, {{ name }}!</p>
+    <p>{{ upper }}</p>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp, ref, computed } = Vue
+
+    createApp({
+      setup() {
+        const message = ref('Hello Vue!')
+        const count = ref(0)
+        const name = ref('')
+        const upper = computed(() => name.value.toUpperCase())
+        return { message, count, name, upper }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>
