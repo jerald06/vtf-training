@@ -10,6 +10,9 @@
       <label for="todo-description">Description</label>
       <input v-model="data.todoDescription" type="text" id="todo-description">
 
+       <label for="todo-color">Color</label>
+      <input v-model="data.todoColor" type="color" id="todo-color">
+
       <input type="submit" value="Create">
     </form>
 
@@ -23,8 +26,16 @@
           <button @click="cancelEdit">Cancel</button>
         </template>
 
-        <!-- Normal mode -->
         <template v-else>
+          <span
+            :style="{
+              display: 'inline-block',
+              width: '20px',
+              height: '12px',
+              marginRight: '8px',
+              backgroundColor: todo.color
+            }"
+          ></span>
           <del v-if="todo.isCompleted">{{ todo.description }}</del>
           <span v-else>{{ todo.description }}</span>
 
@@ -49,12 +60,15 @@ let editText = ref("");
 
 const data = reactive({
   todos: [],
-  todoDescription: ""
+  todoDescription: "",
+  todoColor: "#4f46e5"
+ 
 })
 
 function createTodo() {
   data.todos.push({
     description: data.todoDescription,
+    color: data.todoColor,
     isCompleted: false
   });
   data.todoDescription = "";
